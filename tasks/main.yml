@@ -25,7 +25,8 @@
 
 - name: configure redis-server
   template: src=redis.conf.j2 dest=/etc/redis.conf
-  notify: restart redis
+  notify:
+  - restart redis
   tags: redis
 
 - name: make redis a service
