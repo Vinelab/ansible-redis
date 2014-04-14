@@ -8,15 +8,15 @@
   tags: redis
 
 - name: download redis source
-  shell: wget -O - http://download.redis.io/releases/redis-{{app.redis.version}}.tar.gz | tar -xz -C /tmp creates=/tmp/redis-{{app.redis.version}}
+  shell: wget -O - http://download.redis.io/releases/redis-{{redis.version}}.tar.gz | tar -xz -C /tmp creates=/tmp/redis-{{redis.version}}
   tags: redis
 
 - name: install redis
-  shell: make chdir=/tmp/redis-{{app.redis.version}} creates=/tmp/redis-{{app.redis.version}}/src/redis-server
+  shell: make chdir=/tmp/redis-{{redis.version}} creates=/tmp/redis-{{redis.version}}/src/redis-server
   tags: redis
 
 - name: move compiled redis binaries
-  shell: cp {{item}} /usr/local/bin chdir=/tmp/redis-{{app.redis.version}}/src creates=/usr/local/bin/{{item}}
+  shell: cp -f {{item}} /usr/local/bin chdir=/tmp/redis-{{redis.version}}/src
   with_items:
   - redis-cli
   - redis-server

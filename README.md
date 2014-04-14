@@ -2,20 +2,25 @@
 Install and configure Redis on Centos/Red Hat with Ansible
 
 ## Installation
-Clone this repository inside your ```roles``` directory.
+- Clone this repository inside your ```roles``` directory
+or add as submodule: `git submodule add git@github.com:Vinelab/ansible-redis roles/redis`
+
+- In your playbook:
+
+```yaml
+roles:
+  - redis
+```
 
 ## Synopsis
-Redis will be installed as a service in ```/etc/init.d/redis``` allowing commands such as ```service redis start``` and ```service redis stop``` for easy management.
+Redis will be installed as a service in ```/etc/init.d/redis```
+allowing commands such as ```service redis start``` and ```service redis stop```
+for easy management.
 
 ## Usage
-There must be an ```app``` var with ```redis``` inside it specifying the desired version to install as follows:
 
-```
+```yaml
 vars:
 
-  app:
-    redis:
-      version: 2.8.6
-````
-
-> you may also specify ```app:``` in a separate YAML file and include it in ```vars_files```
+  redis: { version: 2.8.8 }
+```
